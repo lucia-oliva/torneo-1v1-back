@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Backend torneo 1v1",
   "type": "module",
-  "main": "config/index.js",
   "scripts": {
-    "dev": "nodemon config/index.js",
-    "start": "node config/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
