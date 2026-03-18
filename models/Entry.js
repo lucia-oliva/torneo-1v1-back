@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const entrySchema = new mongoose.Schema(
   {
     slotId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Slot',
+      ref: "Slot",
       required: true,
     },
     day: {
@@ -19,12 +19,17 @@ const entrySchema = new mongoose.Schema(
     },
     position: {
       type: String,
-      enum: ['none', 'first', 'second', 'third'],
-      default: 'none',
+      enum: ["none", "first", "second", "third"],
+      default: "none",
+    },
+    tiktokPoints: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
     sanctionType: {
       type: String,
-      enum: ['yellow', 'red', null],
+      enum: ["yellow", "red", null],
       default: null,
     },
     penaltyPoints: {
@@ -36,7 +41,7 @@ const entrySchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
-export default mongoose.model('Entry', entrySchema);
+export default mongoose.model("Entry", entrySchema);
