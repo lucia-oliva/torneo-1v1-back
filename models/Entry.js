@@ -10,7 +10,7 @@ const entrySchema = new mongoose.Schema(
     day: {
       type: Number,
       required: true,
-      enum: [16, 17, 18, 19, 20],
+      enum: [1, 2, 3, 4],
     },
     kills: {
       type: Number,
