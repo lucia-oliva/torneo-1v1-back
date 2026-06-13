@@ -11,6 +11,7 @@ await connectDB();
 const app = express();
 
 const allowedOrigins = [
+   'http://localhost:5173',
   'https://torneo-1v1-app.vercel.app',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
