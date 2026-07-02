@@ -79,7 +79,6 @@ export const createEntry = async (req, res) => {
       day,
       kills = 0,
       position = 'none',
-      tiktokPoints = 0,
       sanctionType = null,
       penaltyPoints = 0,
     } = req.body;
@@ -105,7 +104,6 @@ export const createEntry = async (req, res) => {
       day: Number(day),
       kills: Number(kills || 0),
       position,
-      tiktokPoints: Number(tiktokPoints || 0),
       sanctionType: sanctionType || null,
       penaltyPoints: Number(penaltyPoints || 0),
     });
@@ -132,7 +130,6 @@ export const updateEntryById = async (req, res) => {
     const {
       kills = 0,
       position = 'none',
-      tiktokPoints = 0,
       sanctionType = null,
       penaltyPoints = 0,
     } = req.body;
@@ -150,7 +147,6 @@ export const updateEntryById = async (req, res) => {
         $set: {
           kills: Number(kills || 0),
           position,
-          tiktokPoints: Number(tiktokPoints || 0),
           sanctionType: sanctionType || null,
           penaltyPoints: Number(penaltyPoints || 0),
         },

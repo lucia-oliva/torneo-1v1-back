@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import { connectDB } from './db.js';
 import slotRoutes from '../routes/slotRoutes.js';
 import entryRoutes from '../routes/entryRoutes.js';
+import slotNRRoutes from '../routes/slotNRRoutes.js';
+import entryNRRoutes from '../routes/entryNRRoutes.js';
+import authRoutes from '../routes/authRoutes.js';
 
 dotenv.config();
 await connectDB();
@@ -27,6 +30,7 @@ const corsOptions = {
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -43,6 +47,9 @@ app.get('/api/health', (_req, res) => {
 
 app.use('/api/slots', slotRoutes);
 app.use('/api/entries', entryRoutes);
+app.use('/api/novarush/slots', slotNRRoutes);
+app.use('/api/novarush/entries', entryNRRoutes);
+app.use('/api/auth', authRoutes);
 
 export default app;
 

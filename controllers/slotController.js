@@ -1,4 +1,5 @@
 import Slot from '../models/Slot.js';
+import mongoose from 'mongoose';
 
 export const getSlots = async (_req, res) => {
   try {
@@ -58,6 +59,59 @@ export const seedDefaultSlots = async (_req, res) => {
     res.status(500).json({
       ok: false,
       message: 'Error al crear slots',
+      error: error.message,
+    });
+  }
+};
+
+export const updateSlotById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const name = String(req.body?.name || '').trim();
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        ok: false,
+        message: 'slotId invalido',
+      });
+    }
+
+    if (!name) {
+      return res.status(400).json({
+        ok: false,
+        message: 'El nombre del slot es obligatorio',
+      });
+    }
+
+    if (name.length > 40) {
+      return res.status(400).json({
+        ok: false,
+        message: 'El nombre del slot no puede superar los 40 caracteres',
+      });
+    }
+
+    const updatedSlot = await Slot.findByIdAndUpdate(
+      id,
+      { name },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedSlot) {
+      return res.status(404).json({
+        ok: false,
+        message: 'El slot no existe',
+      });
+    }
+
+    return res.status(200).json({
+      ok: true,
+      message: 'Slot actualizado correctamente',
+      data: updatedSlot,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      message: 'Error al actualizar slot',
       error: error.message,
     });
   }

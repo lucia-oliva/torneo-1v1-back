@@ -22,11 +22,6 @@ const entrySchema = new mongoose.Schema(
       enum: ["none", "first", "second", "third"],
       default: "none",
     },
-    tiktokPoints: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
     sanctionType: {
       type: String,
       enum: ["yellow", "red", null],
