@@ -5,11 +5,13 @@ import {
   createEntryNR,
   updateEntryNRById,
   deleteEntryNRById,
+  deleteAllEntriesNR,
 } from '../controllers/entryNRController.js';
 
 const router = Router();
 
 router.get('/', getEntriesNR);
+router.delete('/', deleteAllEntriesNR);
 router.get('/:id', getEntryNRById);
 router.post('/', createEntryNR);
 router.put('/:id', updateEntryNRById);

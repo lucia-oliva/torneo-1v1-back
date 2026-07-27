@@ -39,6 +39,26 @@ export const getEntriesNR = async (req, res) => {
   }
 };
 
+export const deleteAllEntriesNR = async (_req, res) => {
+  try {
+    const result = await EntryNR.deleteMany({});
+
+    return res.status(200).json({
+      ok: true,
+      message: 'Tabla de NovaRush reiniciada correctamente',
+      data: {
+        deletedCount: result.deletedCount,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      message: 'Error al reiniciar tabla de NovaRush',
+      error: error.message,
+    });
+  }
+};
+
 export const getEntryNRById = async (req, res) => {
   try {
     const { id } = req.params;

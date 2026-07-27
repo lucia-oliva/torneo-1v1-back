@@ -39,6 +39,26 @@ export const getEntries = async (req, res) => {
   }
 };
 
+export const deleteAllEntries = async (_req, res) => {
+  try {
+    const result = await Entry.deleteMany({});
+
+    return res.status(200).json({
+      ok: true,
+      message: 'Tabla reiniciada correctamente',
+      data: {
+        deletedCount: result.deletedCount,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      message: 'Error al reiniciar tabla',
+      error: error.message,
+    });
+  }
+};
+
 export const getEntryById = async (req, res) => {
   try {
     const { id } = req.params;

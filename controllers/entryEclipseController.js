@@ -39,6 +39,26 @@ export const getEntriesEclipse = async (req, res) => {
   }
 };
 
+export const deleteAllEntriesEclipse = async (_req, res) => {
+  try {
+    const result = await EntryEclipse.deleteMany({});
+
+    return res.status(200).json({
+      ok: true,
+      message: 'Tabla de NovaEclipse reiniciada correctamente',
+      data: {
+        deletedCount: result.deletedCount,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      message: 'Error al reiniciar tabla de NovaEclipse',
+      error: error.message,
+    });
+  }
+};
+
 export const getEntryEclipseById = async (req, res) => {
   try {
     const { id } = req.params;
