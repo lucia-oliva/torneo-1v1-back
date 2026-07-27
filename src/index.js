@@ -6,6 +6,8 @@ import slotRoutes from '../routes/slotRoutes.js';
 import entryRoutes from '../routes/entryRoutes.js';
 import slotNRRoutes from '../routes/slotNRRoutes.js';
 import entryNRRoutes from '../routes/entryNRRoutes.js';
+import slotEclipseRoutes from '../routes/slotEclipseRoutes.js';
+import entryEclipseRoutes from '../routes/entryEclipseRoutes.js';
 import authRoutes from '../routes/authRoutes.js';
 
 dotenv.config();
@@ -14,8 +16,7 @@ await connectDB();
 const app = express();
 
 const allowedOrigins = [
-   'http://localhost:5173',
-  'https://torneo-1v1-app.vercel.app',
+  'https://nova-esports-app.vercel.app',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
@@ -50,6 +51,8 @@ app.use('/api/slots', slotRoutes);
 app.use('/api/entries', entryRoutes);
 app.use('/api/novarush/slots', slotNRRoutes);
 app.use('/api/novarush/entries', entryNRRoutes);
+app.use('/api/novaeclipse/slots', slotEclipseRoutes);
+app.use('/api/novaeclipse/entries', entryEclipseRoutes);
 app.use('/api/auth', authRoutes);
 
 export default app;
